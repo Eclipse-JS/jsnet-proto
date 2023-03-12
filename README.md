@@ -1,2 +1,4 @@
 # jsnet-proto
-Prototype of new networking system for EclipseOS (will be converted someday)
+Prototype of new networking system for EclipseOS
+## wen eta
+eta son
