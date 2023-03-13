@@ -25,7 +25,14 @@ const netAPI = {
   core: {
     /**
      * Adds a network device to the system.
-     * @param {string} name
+     * @param {string} name Network device name (ex. relay0, lo)
+     * @param {number} deviceID Device ID of the subnet (ex. 68 is Comcast from standard IPv4)
+     * @param {number} firstSubnetID First subnet ID
+     * @param {number} secondSubnetID Second subnet ID
+     * @param {number[]} hostIDs All host IDs that you have for the object
+     * @param {function} whenConnected Event called when you recieve a connection request from your IP
+     * @param {function} whenListened Event called when you recieve a listen request from your IP
+     * @returns {object} Network device object
      */
     addNetworkDevice(name, deviceID, firstSubnetID, secondSubnetID, hostIDs, whenConnected, whenListened) {
       const checkIfHostIDsAreAnInteger = (elem) => typeof elem == "number";
@@ -52,7 +59,8 @@ const netAPI = {
         throw new Error("IP Address too big!");
       }
 
-      networkDevices.push({
+      // Network device generated.
+      const netDevice = {
         name,
         networkManifest: {
           deviceID,
@@ -64,10 +72,23 @@ const netAPI = {
           whenListened
         },
         hostIDs
-      });
+      };
+
+      networkDevices.push(netDevice);
+      return netDevice;
     },
 
-    getNetworkDevices() {},
+    /**
+     * Gets all the network devices on the system.
+     * @returns {object} List of all network devices on the system
+     */
+    getNetworkDevices() {
+      return networkDevices.map((item) => {
+        item.name,
+        item.networkManifest,
+        item.hostIDs
+      })
+    },
   },
 };
 
