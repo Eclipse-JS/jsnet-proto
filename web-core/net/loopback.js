@@ -50,7 +50,7 @@ export function loadLoopback(netAPI) {
           // Iterates over all the listeners from the client, and sends a message to each of them 
           for (const listener of connectedFuncArr) {
             try {
-              listener(msg);
+              listener(netAPI.helperInternal.sanitizeIPMsg(msg));
             } catch (e) {
               console.error(e);
             }
@@ -71,7 +71,7 @@ export function loadLoopback(netAPI) {
         // Iterates over all the listeners from the server, and sends a message to each of them 
         for (const listener of allListenerFuncArr) {
           try {
-            listener(msg);
+            listener(netAPI.helperInternal.sanitizeIPMsg(msg));
           } catch (e) {
             console.error(e);
           }
