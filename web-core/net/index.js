@@ -38,6 +38,8 @@ const netAPI = {
     if (!deviceHostingIP) {
       throw new Error("Could not find any network devices that are hosting that IP!");
     }
+
+    return deviceHostingIP.eventDispatchers.whenConnected(hostID, port);
   },
 
   /**
@@ -78,6 +80,8 @@ const netAPI = {
     if (!deviceHostingIP) {
       throw new Error("Could not find any network devices that are hosting that IP!");
     }
+
+    return deviceHostingIP.eventDispatchers.whenListened(hostID, port);
   },
 
   /**
