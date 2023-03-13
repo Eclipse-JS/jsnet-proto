@@ -164,6 +164,18 @@ const netAPI = {
       })
     },
   },
+
+  /**
+   * Internal functions designed to be used for network devices
+   */
+  helperInternal: {
+    sanitizeIPMsg: function(data) {
+      const layerOneSanitize = typeof data == "object" ? JSON.stringify(data) : data;
+      const layerTwoSanitize = `${layerOneSanitize}`; // Ensure that data is a string
+
+      return layerTwoSanitize;
+    }
+  }
 };
 
 loadLoopback(netAPI);
