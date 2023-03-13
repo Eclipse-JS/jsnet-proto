@@ -13,7 +13,7 @@ const netAPI = {
     }
 
     // Check to see if the port is a number.
-    if (typeof port != "number") {
+    if (isNaN(port)) {
       throw new Error("Port is not a number.");
     }
   
@@ -52,7 +52,7 @@ const netAPI = {
     }
 
     // Check to see if the port is a number.
-    if (typeof port != "number") {
+    if (isNaN(port)) {
       throw new Error("Port is not a number.");
     }
 
@@ -96,15 +96,15 @@ const netAPI = {
      * @returns {object} Network device object
      */
     addNetworkDevice(name, deviceID, firstSubnetID, secondSubnetID, hostIDs, whenConnected, whenListened) {
-      const checkIfHostIDsAreAnInteger = (elem) => typeof elem == "number";
+      const checkIfHostIDsAreNotAnInteger = (elem) => isNaN(elem);
       const checkIfHostIDsAreAbove255 = (elem) => elem > 255;
 
       // Validate that everything is the correct type, which is an number, currently
       if (
-        typeof deviceID != "number" ||
-        typeof firstSubnetID != "number" ||
-        typeof secondSubnetID != "number" ||
-        !hostIDs.some(checkIfHostIDsAreAnInteger)
+        isNaN(deviceID) ||
+        isNaN(firstSubnetID) ||
+        isNaN(secondSubnetID) ||
+        hostIDs.some(checkIfHostIDsAreNotAnInteger)
       ) {
         throw new Error("Any part of the virtual IP address(es) are not a number!");
       }
