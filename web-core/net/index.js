@@ -56,7 +56,12 @@ const netAPI = {
         secondSubnetID > 255 ||
         hostIDs.some(checkIfHostIDsAreAbove255)
       ) {
-        throw new Error("IP Address too big!");
+        throw new Error(hostIDs.length != 1 ? "The IP addresses are too big!" : "The IP address is too big!");
+      }
+
+      // Validate that the whenConnected() and whenListened() functions are indeed functions
+      if (typeof whenConnected != "function" || typeof whenListened != "function") {
+        throw new Error("Either whenConnected() or whenListened() are not functions!");
       }
 
       // Network device generated.
