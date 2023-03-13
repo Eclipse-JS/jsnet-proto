@@ -8,7 +8,7 @@ const netAPI = {
    * @param {string} ip IP address to connect to
    * @param {number} port Port to connect to
    */
-  async connect(ip, port) {
+  connect(ip, port) {
     // Check to see if the IP address contains 4 octets.
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
@@ -49,7 +49,7 @@ const netAPI = {
    * @param {string} ip IP to listen on (can be 0.0.0.0 to attempt to listen on all IPs)
    * @param {number} port Port to listen on (can be from 0 to 65535)
    */
-  async listen(ip, port) {
+  listen(ip, port) {
     // Check to see if the IP address contains 4 octets.
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
