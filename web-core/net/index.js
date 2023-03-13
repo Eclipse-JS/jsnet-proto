@@ -27,7 +27,7 @@ const netAPI = {
      * Adds a network device to the system.
      * @param {string} name
      */
-    addNetworkDevice(name, deviceID, firstSubnetID, secondSubnetID, hostIDs) {
+    addNetworkDevice(name, deviceID, firstSubnetID, secondSubnetID, hostIDs, whenConnected, whenListened) {
       const checkIfHostIDsAreAnInteger = (elem) => typeof elem == "number";
       const checkIfHostIDsAreAbove255 = (elem) => elem > 255;
 
@@ -58,6 +58,10 @@ const netAPI = {
           deviceID,
           firstSubnetID,
           secondSubnetID
+        },
+        eventDispatchers: {
+          whenConnected,
+          whenListened
         },
         hostIDs
       });
