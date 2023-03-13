@@ -11,6 +11,28 @@ const netAPI = {
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
     }
+
+    const ipSplit = ip.split(".");
+
+    const deviceID = parseInt(ipSplit[0]);
+    const firstSubnetID = parseInt(ipSplit[1]);
+    const secondSubnetID = parseInt(ipSplit[2]);
+    const hostID = parseInt(ipSplit[3]);
+
+    if (isNaN(deviceID) || isNaN(firstSubnetID) || isNaN(secondSubnetID) || isNaN(hostID)) {
+      throw new Error("IP address does not fully contain numbers!");
+    }
+
+    const deviceHostingIP = networkDevices.find((i) => {
+      const nid = i.networkID;
+      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID && i.hostIDs.includes(hostID)) {
+        return true;
+      }
+    });
+
+    if (!deviceHostingIP) {
+      throw new Error("Could not find any network devices that are hosting that IP!");
+    }
   },
 
   /**
@@ -22,6 +44,28 @@ const netAPI = {
     // Check to see if the IP address contains 4 octets.
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
+    }
+
+    const ipSplit = ip.split(".");
+
+    const deviceID = parseInt(ipSplit[0]);
+    const firstSubnetID = parseInt(ipSplit[1]);
+    const secondSubnetID = parseInt(ipSplit[2]);
+    const hostID = parseInt(ipSplit[3]);
+
+    if (isNaN(deviceID) || isNaN(firstSubnetID) || isNaN(secondSubnetID) || isNaN(hostID)) {
+      throw new Error("IP address does not fully contain numbers!");
+    }
+
+    const deviceHostingIP = networkDevices.find((i) => {
+      const nid = i.networkID;
+      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID && i.hostIDs.includes(hostID)) {
+        return true;
+      }
+    });
+
+    if (!deviceHostingIP) {
+      throw new Error("Could not find any network devices that are hosting that IP!");
     }
   },
 
