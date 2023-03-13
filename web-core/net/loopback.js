@@ -1,9 +1,19 @@
+function array_alloc(num) {
+  const arr = [];
+
+  for (var i = 1; i < num+1; i++) {
+    arr.push(i);
+  }
+
+  return arr;
+}
+
 export function loadLoopback(netAPI) {
-  const itemTable = [];
+  const itemTable = []; // Stores client data, not used much
 
   function whenConnected(hostID, port) {
     console.log("whenConnect(%s, %s) called", hostID, port);
-    const item = itemTable.find((i) => i.port == port);
+    const item = itemTable.find((i) => i.hostID == hostID && i.port == port);
     
     if (!item) {
       throw new Error("Not listening on port " + port);
@@ -66,6 +76,7 @@ export function loadLoopback(netAPI) {
     
     const item = {
       port: port,
+      hostID: hostID,
       listeners: []
     };
     itemTable.push(item);
@@ -88,5 +99,5 @@ export function loadLoopback(netAPI) {
     }
   }
 
-  netAPI.core.addNetworkDevice("lo", 127, 0, 0, [1], whenConnected, whenListened);
+  netAPI.core.addNetworkDevice("lo", 127, 0, 0, array_alloc(255), whenConnected, whenListened);
 }

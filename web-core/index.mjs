@@ -1,11 +1,7 @@
 import { netAPI } from "./net/index.js";
-console.log(netAPI.core.getNetworkDevices());
 
 const server = netAPI.listen("127.0.0.1", 8000);
-console.log(server);
-server.on("connection", function(client) {
-  console.log("I AM NOT ON FIRE!!!!!1");
-  
+server.on("connection", function(client) {  
   client.on("message", function(msg) {
     console.log(msg);
 

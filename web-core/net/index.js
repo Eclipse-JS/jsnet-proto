@@ -103,7 +103,7 @@ const netAPI = {
      */
     addNetworkDevice(name, deviceID, firstSubnetID, secondSubnetID, hostIDs, whenConnected, whenListened) {
       const checkIfHostIDsAreNotAnInteger = (elem) => isNaN(elem);
-      const checkIfHostIDsAreAbove255 = (elem) => elem > 255;
+      const checkIfHostIDsAreCompliantSize = (elem) => elem > 255 || elem <= 0;
 
       // Validate that everything is the correct type, which is an number, currently
       if (
@@ -121,7 +121,7 @@ const netAPI = {
         deviceID > 255 ||
         firstSubnetID > 255 ||
         secondSubnetID > 255 ||
-        hostIDs.some(checkIfHostIDsAreAbove255)
+        hostIDs.some(checkIfHostIDsAreCompliantSize)
       ) {
         throw new Error(hostIDs.length != 1 ? "The IP addresses are too big!" : "The IP address is too big!");
       }
