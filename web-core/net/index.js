@@ -12,6 +12,11 @@ const netAPI = {
       throw new Error("Not a valid IP address!");
     }
 
+    // Check to see if the port is a number.
+    if (typeof port != "number") {
+      throw new Error("Port is not a number.");
+    }
+  
     const ipSplit = ip.split(".");
 
     const deviceID = parseInt(ipSplit[0]);
@@ -46,6 +51,12 @@ const netAPI = {
       throw new Error("Not a valid IP address!");
     }
 
+    // Check to see if the port is a number.
+    if (typeof port != "number") {
+      throw new Error("Port is not a number.");
+    }
+
+    // Parse the IP address by splitting it, and parsing each element as a number.
     const ipSplit = ip.split(".");
 
     const deviceID = parseInt(ipSplit[0]);
