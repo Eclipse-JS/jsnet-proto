@@ -1,4 +1,4 @@
-import { loadLoopback } from "./loopback.js";
+import { loadLoopback } from "./loopback.mjs";
 
 const networkDevices = [];
 

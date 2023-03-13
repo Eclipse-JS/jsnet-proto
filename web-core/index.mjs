@@ -1,4 +1,4 @@
-import { netAPI } from "./net/index.js";
+import { netAPI } from "./net/index.mjs";
 
 const server = netAPI.listen("127.0.0.1", 8000);
 server.on("connection", function(client) {  
