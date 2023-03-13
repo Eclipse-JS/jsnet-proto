@@ -89,9 +89,11 @@ const netAPI = {
      */
     getNetworkDevices() {
       return networkDevices.map((item) => {
-        item.name,
-        item.networkManifest,
-        item.hostIDs
+        return {
+          name: item.name,
+          networkManifest: item.networkManifest,
+          hostIDs: item.hostIDs
+        }
       })
     },
   },
