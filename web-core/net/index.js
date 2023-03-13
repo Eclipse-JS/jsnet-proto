@@ -1,3 +1,5 @@
+import { loadLoopback } from "./loopback.js";
+
 const networkDevices = [];
 
 const netAPI = {
@@ -43,7 +45,7 @@ const netAPI = {
   },
 
   /**
-   *
+   * Listens on a port.
    * @param {string} ip IP to listen on (can be 0.0.0.0 to attempt to listen on all IPs)
    * @param {number} port Port to listen on (can be from 0 to 65535)
    */
@@ -163,5 +165,7 @@ const netAPI = {
     },
   },
 };
+
+loadLoopback(netAPI);
 
 export { netAPI };
