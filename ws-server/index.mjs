@@ -27,10 +27,10 @@ app.get("/api/v1/getClientList", function(req, res) {
 
 app.post("/api/v1/reserveClientIP", function(req, res) {
   const targetPass = getRandomArbitrary(10000000, 99999999);
-  let targetIP = getRandomArbitrary(1, 255);
+  let targetIP = Math.floor(getRandomArbitrary(1, 255));
 
   while (reserveIPs.find((i) => i.ip == targetIP)) {
-    targetIP = getRandomArbitrary(1, 255);
+    targetIP = Math.floor(getRandomArbitrary(1, 255));
   }
 
   reserveIPs.push({
