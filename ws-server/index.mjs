@@ -40,7 +40,8 @@ app.post("/api/v1/reserveClientIP", function(req, res) {
 
   res.send({
     success: true,
-    pass: targetPass
+    pass: targetPass,
+    ip: targetIP
   });
 });
 

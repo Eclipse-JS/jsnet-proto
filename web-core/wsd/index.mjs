@@ -1,8 +1,16 @@
-const relayList = ["ws://127.0.0.1:1280"];
+const relayList = ["ws://127.0.0.1:1281"];
 
-export function register(netAPI) {
-  const whenConnected = () => {};
-  const whenListened = () => {};
+import { enCPConfig } from "./validateServer.mjs";
 
-  netAPI.core.addNetworkDevice("relay0", 1, 0, 0, [1], whenConnected, whenListened);
+export async function register(netAPI) {
+  for (const relayIndex in relayList) {
+    const relay = relayList[relayIndex];
+
+    const conf = await enCPConfig(relay);
+
+    const whenConnected = () => {};
+    const whenListened = () => {};
+
+    netAPI.core.addNetworkDevice("relay0", parseInt(relayIndex)+1, 0, 0, [conf.ip], whenConnected, whenListened);
+  }
 }
