@@ -37,7 +37,7 @@ function broadcastMsg(msg) {
 app.get("/api/v1/getClientList", function (req, res) {
   res.send({
     success: true,
-    data: clients, // TODO: sanitize(?)
+    data: clients.map((i) => i.targetIP),
   });
 });
 
