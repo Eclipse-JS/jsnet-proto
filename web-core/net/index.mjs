@@ -8,7 +8,7 @@ const netAPI = {
    * @param {string} ip IP address to connect to
    * @param {number} port Port to connect to
    */
-  connect(ip, port) {
+  async connect(ip, port) {
     // Check to see if the IP address contains 4 octets.
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
@@ -31,8 +31,10 @@ const netAPI = {
     }
 
     const deviceHostingIP = networkDevices.find((i) => {
+      // TODO:  && i.hostIDs.includes(hostID)
+
       const nid = i.networkID;
-      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID && i.hostIDs.includes(hostID)) {
+      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID) {
         return true;
       }
     });
@@ -49,7 +51,7 @@ const netAPI = {
    * @param {string} ip IP to listen on (can be 0.0.0.0 to attempt to listen on all IPs)
    * @param {number} port Port to listen on (can be from 0 to 65535)
    */
-  listen(ip, port) {
+  async listen(ip, port) {
     // Check to see if the IP address contains 4 octets.
     if (ip.split(".").length != 4) {
       throw new Error("Not a valid IP address!");
@@ -73,8 +75,9 @@ const netAPI = {
     }
 
     const deviceHostingIP = networkDevices.find((i) => {
+      // TODO: && i.hostIDs.includes(hostID)
       const nid = i.networkID;
-      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID && i.hostIDs.includes(hostID)) {
+      if (nid.deviceID == deviceID && nid.firstSubnetID == firstSubnetID && nid.secondSubnetID == secondSubnetID) {
         return true;
       }
     });

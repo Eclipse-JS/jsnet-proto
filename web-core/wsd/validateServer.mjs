@@ -19,8 +19,6 @@ async function getData(url = "", method = "GET", data) {
 export async function enCPConfig(wsIP) {
   const httpURL = wsIP.replace("ws", "http");
   const reserveTest = await getData(httpURL + "/api/v1/reserveClientIP", "POST");
-
-  console.log(reserveTest);
-
+  
   return reserveTest;
 }
