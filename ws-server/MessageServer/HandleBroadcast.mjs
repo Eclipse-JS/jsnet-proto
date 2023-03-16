@@ -17,13 +17,11 @@ export function handleBroadcast(ws, clients) {
         if (msg.type == "connection") {
           ws.send(JSON.stringify({
             type: "connection",
-            data: msg.data.toString(),
             ip: conf.targetIP
           }));
         } else if (msg.type == "disconnection") {
           ws.send(JSON.stringify({
             type: "disconnection",
-            data: msg.data.toString(),
             ip: conf.targetIP
           }));
         } else if (msg.type == "sentMessageClient") {

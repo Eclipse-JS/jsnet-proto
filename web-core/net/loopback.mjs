@@ -76,7 +76,8 @@ export function loadLoopback(netAPI) {
             console.error(e);
           }
         }
-      }
+      },
+      close: () => {}
     }
   }
 
@@ -117,7 +118,8 @@ export function loadLoopback(netAPI) {
 
           sync();
         }
-      }
+      },
+      close: () => {}
     }
   }
 

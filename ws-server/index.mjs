@@ -114,7 +114,7 @@ wss.on("connection", function (ws) {
         );
       }
 
-      ws.clientConfig = item;
+      ws.clientConfig = Object.create(item);
 
       return ws.send(
         JSON.stringify({
