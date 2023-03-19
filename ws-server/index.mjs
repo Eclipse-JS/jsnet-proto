@@ -7,6 +7,8 @@
  */
 
 import express from "express";
+import cors from "cors";
+
 import { WebSocketServer } from "ws";
 
 import { createServer } from "http";
@@ -27,6 +29,7 @@ const app = express();
 const server = createServer(app);
 
 app.use(express.json());
+app.use(cors());
 
 function broadcastMsg(msg) {
   for (const client of clients) {
