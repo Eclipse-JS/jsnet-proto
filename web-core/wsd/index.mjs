@@ -42,7 +42,9 @@ export async function register(netAPI) {
           if (!data.success) throw new Error("Failed to connect to server");
           handleState = "messageControl";
 
-          for (const i of msgBuffer) ws.send(i);
+          for (const i of msgBuffer) {
+            ws.send(i);
+          }
         }
 
         if (!data.success) {
@@ -91,6 +93,7 @@ export async function register(netAPI) {
                     if (type == "message") {
                       internalOnMessageDispatcher.push({
                         ip: data.ip,
+                        host: data.ip,
                         func: func
                       })
                     }
@@ -111,7 +114,7 @@ export async function register(netAPI) {
             for (const i of internalOnMessageDispatcher) {
               if (i.host == data.ip) {
                 try {
-                  i.func(data);
+                  i.func(data.data);
                 } catch (e) {
                   console.error(e);
                 }

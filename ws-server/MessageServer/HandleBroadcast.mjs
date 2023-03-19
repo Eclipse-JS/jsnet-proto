@@ -4,7 +4,7 @@ export function handleBroadcast(ws, clients) {
   return function(msg) {
     switch (conf.mode) {
       case "connect": {
-        if (msg.type == "sentMessageListen" && msg.config.host == conf.targetIP && msg.intendRecv == conf.targetIP && msg.config.port == conf.port) {
+        if (msg.type == "sentMessageListen" && msg.intendRecv == conf.targetIP && msg.config.port == conf.port) {
           ws.send(msg.data.toString());
         }
 
