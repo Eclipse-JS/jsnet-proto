@@ -5,30 +5,30 @@ export function handleBroadcast(ws, clients) {
     switch (conf.mode) {
       case "connect": {
         if (msg.type == "sentMessageListen" && msg.intendRecv == conf.targetIP && msg.config.port == conf.port) {
-          ws.send(msg.data.toString());
+          ws.send(msg.data);
         }
 
         break;
       }
   
       case "listen": {
-        if (msg.config.host != conf.targetIP && msg.config.port != conf.port) return;
+        if (msg.config.host != conf.targetIP || msg.config.port != conf.port) return;
 
         if (msg.type == "connection") {
           ws.send(JSON.stringify({
             type: "connection",
-            ip: conf.targetIP
+            ip: msg.config.targetIP
           }));
         } else if (msg.type == "disconnection") {
           ws.send(JSON.stringify({
             type: "disconnection",
-            ip: conf.targetIP
+            ip: msg.config.targetIP
           }));
         } else if (msg.type == "sentMessageClient") {
           ws.send(JSON.stringify({
             type: "message",
             data: msg.data.toString(),
-            ip: conf.targetIP
+            ip: msg.config.targetIP
           }));
         }
 

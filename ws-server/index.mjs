@@ -117,7 +117,8 @@ wss.on("connection", function (ws) {
         );
       }
 
-      ws.clientConfig = Object.create(item);
+      ws.clientConfig.targetIP = item.targetIP;
+      ws.clientConfig.targetPass = item.targetPass;
 
       return ws.send(
         JSON.stringify({
